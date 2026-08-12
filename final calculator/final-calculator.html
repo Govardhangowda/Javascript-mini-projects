@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aesthetic Calculator</title>
+  <link rel="stylesheet" href="styles/calci.css">
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">0</div>
+    <div class="buttons">
+      <!-- Numbers -->
+          <button onclick="
+      calculation+=1;
+      displayer(calculation);
+      ">
+        1
+      </button>
+
+      <button onclick="
+      calculation+=2;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        2
+      </button>
+
+      <button onclick="
+      calculation+=3;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        3
+      </button>
+      <button class="operation"
+            onclick="
+        calculation+='/'
+        displayer(calculation);">÷</button>
+
+          <button onclick="
+      calculation+=4;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        4
+      </button>
+
+      <button onclick="
+      calculation+=5;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        5
+      </button>
+
+      <button onclick="
+      calculation+=6;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        6
+      </button>
+      <button class="operation"
+          onclick="
+      calculation+='*'
+      displayer(calculation);">×</button>
+
+      <button onclick="
+      calculation+=7;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        7
+      </button>
+
+      <button onclick="
+      calculation+=8;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        8
+      </button>
+
+      <button onclick="
+      calculation+=9;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        9
+      </button>
+
+      <button class="operation"
+      onclick="
+      calculation+='-'
+      displayer(calculation);">−</button>
+
+      <button onclick="
+      calculation+=0;
+      console.log(calculation)
+      displayer(calculation);
+      ">
+        0
+      </button>
+
+
+      <button class="special"
+      onclick="
+      calculation = calculation.slice(0, -1);
+      displayer(calculation);"
+      >Back</button>
+
+      <button class="special"
+      onclick="
+      console.log(localStorage.getItem('exes')||'no value');
+      calculation=localStorage.getItem('exes')||'0';
+      displayer(calculation);">
+      Previous</button>
+
+
+      <button class="operation"
+      onclick="
+      calculation+='+'
+      displayer(calculation);">+</button>
+      <button onclick="
+      localStorage.setItem('exes',calculation);
+      calculation=eval(calculation);
+      console.log(calculation);
+      displayer(calculation);
+        "
+        class="operation">
+          =
+      </button>
+
+
+      <button class="special wide"
+      onclick="calculation='';
+      displayer(calculation);
+      ">
+        Clear</button>
+
+      </div>
+  </div>
+  <script>
+    let calculation='';
+    function displayer(calculation){
+      document.querySelector('.display').innerHTML=`${calculation}`
+    };
+    
+  </script>
+</body>
+</html>
