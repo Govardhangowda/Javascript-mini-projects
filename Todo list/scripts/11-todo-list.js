@@ -1,11 +1,10 @@
-const todolist=[{
-  name:'make dinner',
-  duedate:'2026-8-30'
-},
-{
-  name:'hello',
-  duedate:'2026-09-30'
-}];
+
+// Get the string back
+let storedlist = localStorage.getItem("list");
+
+// Convert back to array
+let todolist = (JSON.parse(storedlist)||[]);
+
 
 rendertodolist();
 
@@ -25,6 +24,7 @@ function rendertodolist(){
       </div> 
       <button onclick=" 
         todolist.splice(${i},1);
+        localStorage.setItem('list', JSON.stringify(todolist)); 
         rendertodolist();"
         class="delete-todo-button">
         Delete
@@ -47,6 +47,9 @@ function addTodo() {
     duedate
   });
   console.log(todolist);
+  localStorage.setItem("list",JSON.stringify(todolist));
   inputElement.value='';
+  dateInputElement.value='';
   rendertodolist();
+
 }
