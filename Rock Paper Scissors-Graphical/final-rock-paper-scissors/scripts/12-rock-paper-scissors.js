@@ -17,12 +17,14 @@
 
     function autoplay(){
       if(isAutoPlaying===false){
+        document.querySelector('.js-autoplay').innerHTML='Stop';
         intervalid= setInterval(function(){
         const playermove=pickcomputermove();
         determination(playermove);
       },1000);
       isAutoPlaying=true;
       } else{
+        document.querySelector('.js-autoplay').innerHTML='Autoplay';
         clearInterval(intervalid);
         isAutoPlaying=false;
       }
@@ -42,27 +44,69 @@
     })
 
     document.querySelector('.js-reset').addEventListener('click',() =>{
-      score.wins=0;
-      score.loses=0;
-      score.ties=0;
-      localStorage.removeItem('score');
-      updatescoreelement();
+      let select=false;
+      const popup= document.querySelector('.popup');
+      popup.innerHTML=`
+      <p class="popup-text">Are you sure you want to reset the score?</p>
+      <button class="popup-button js-yes">Yes</button>
+      <button class="popup-button js-no">No</button>`
+
+      popup.querySelector('.js-yes').addEventListener('click',()=>{
+          score.wins=0;
+          score.loses=0;
+          score.ties=0;
+          localStorage.removeItem('score');
+          updatescoreelement();
+          popup.innerHTML='';
+      })
+      
+      popup.querySelector('.js-no').addEventListener('click',()=>{
+        popup.innerHTML=''
+      })
+          
+      
+      
     })
 
     document.querySelector('.js-autoplay').addEventListener('click',() =>{
       autoplay();
     })
+  
+
 
 
     document.body.addEventListener('keydown',(event) =>{
-      if (event.key===('r'||'R')){
+      if (event.key===('r')||event.key===('R')){
         determination('Rock');
-      }else if(event.key===('s' || 'S')){
+      }else if(event.key===('s')||event.key===('S')){
         determination('Scissors');
-      }else if(event.key===('p' || 'P')){
+      }else if(event.key===('p')||event.key===('P')){
         determination('Paper');
-      }
-  }
+      }else if(event.key===('a')||event.key===('A')){
+        autoplay();
+      }else if(event.key===('0')){
+      
+          let select=false;
+          const popup= document.querySelector('.popup');
+          popup.innerHTML=`
+          <p class="popup-text">Are you sure you want to reset the score?</p>
+          <button class="popup-button js-yes">Yes</button>
+          <button class="popup-button js-no">No</button>`
+
+          popup.querySelector('.js-yes').addEventListener('click',()=>{
+              score.wins=0;
+              score.loses=0;
+              score.ties=0;
+              localStorage.removeItem('score');
+              updatescoreelement();
+              popup.innerHTML='';
+          })
+          
+          popup.querySelector('.js-no').addEventListener('click',()=>{
+            popup.innerHTML=''
+          }) 
+        }
+        }
   );
 
 
